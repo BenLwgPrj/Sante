@@ -9,7 +9,6 @@ source as (
 renamed as (
 
     select
-        population,
         noind,
         periode_reference,
         conso_bebe_sein,
@@ -48,24 +47,11 @@ renamed as (
         conso_pain,
         conso_jus,
         conso_plats_faits_maison,
-        jardin,
         autoconsommation,
         autoconsommation_type,
-        autoproduction,
         conso_aliments_bio,
         consommation_bio,
-        consommation_bio_type,
-        conso_oeufs_bio_tjr_svt,
-        conso_lait_bio_tjr_svt,
-        conso_volailles_bio_tjr_svt,
-        conso_viandes_bio_tjr_svt,
-        conso_poissons_bio_tjr_svt,
-        conso_fruits_bio_tjr_svt,
-        conso_pdt_bio_tjr_svt,
-        conso_legumes_bio_tjr_svt,
-        conso_legumes_secs_bio_tjr_svt,
-        conso_cereales_bio_tjr_svt,
-        conso_pain_bio_tjr_svt
+        consommation_bio_type
 
     from source
 
