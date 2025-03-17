@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: sante
+    schema: SANTE2
+    tables:
+      - name: indiv-desc
+        identifier: description-indiv
+        description: Individu table
+        columns:
+          - name: NOMEN
+            description: Numéro de ménage
+
+      - name: indiv-hab
+        identifier: habitudes-indivi
+        description: ...
+
+      - name: men-habitudes
+        identifier: habitudes-men
+        description: ...
+
+      - name: actphys
+        identifier: actphys-sedent
+        description: ...
+        columns:
+        - name: POPULATION
+          description: Pop1 Individu pour les enfants de 3-17 ans et Pop2 Individu pour les adultes de 18-79 ans
+#          tests:
+#          - unique
+#          - not_null
+        
+      - name: fpq
+        identifier: fpq
+        description: ...
+        
+      - name: occasions
+        identifier: occasions
+        description: ...
+
+#### Example cours
+#      - name: parcel_product 
+#        identifier: raw_cc_parcel_product 
+#        description: parcel_product of Circle
+#        tests:
+#          - unique:
+#              column_name: "ParCEL_id || '-' || Model_mAME"
+#          - not_null:
+#              column_name: "ParCEL_id || '-' || Model_mAME"
+#        columns:
+#        - name: parcel_id
+#          description: primary key for this table (Integer ID of parcel)
