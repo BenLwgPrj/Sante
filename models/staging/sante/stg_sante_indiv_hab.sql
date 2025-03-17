@@ -10,6 +10,7 @@ renamed as (
 
     select
         noind,
+        population,
         periode_reference,
         conso_bebe_sein,
         diversification_alim_bebe,
