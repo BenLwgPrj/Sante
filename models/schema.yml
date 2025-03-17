@@ -4,15 +4,23 @@ sources:
   - name: sante
     schema: SANTE2
     tables:
-      - name: indiv
+      - name: indiv-desc
         identifier: description-indiv
         description: Individu table
         columns:
           - name: NOMEN
             description: Numéro de ménage
 
-      - name: sedent
-        identifier: 'actphys-sedent'
+      - name: indiv-hab
+        identifier: habitudes-indivi
+        description: ...
+
+      - name: men-habitudes
+        identifier: habitudes-men
+        description: ...
+
+      - name: actphys
+        identifier: actphys-sedent
         description: ...
         columns:
         - name: POPULATION
@@ -20,6 +28,14 @@ sources:
 #          tests:
 #          - unique
 #          - not_null
+        
+      - name: fpq
+        identifier: fpq
+        description: ...
+        
+      - name: occasions
+        identifier: occasions
+        description: ...
 
 #### Example cours
 #      - name: parcel_product 
