@@ -1,6 +1,6 @@
 SELECT
     noind,
-    population,
+    --population,
     periode_reference,
     conso_bebe_sein,
     diversification_alim_bebe,

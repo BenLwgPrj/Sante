@@ -1,5 +1,5 @@
 SELECT
-    POPULATION,
+    --POPULATION,
     NOMEN,
     choix_aliment_origine,
     choix_aliment_prix,

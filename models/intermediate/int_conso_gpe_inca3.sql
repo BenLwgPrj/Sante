@@ -1,5 +1,5 @@
 SELECT
-    population,
+    --population,
     noind,
     ROUND(conso_gpe1 + conso_gpe3 + conso_gpe4,1) as cereales_completes,
     ROUND(conso_gpe5 + conso_gpe2,1) as cereales_raffinees,
