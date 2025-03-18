@@ -11,10 +11,17 @@ renamed as (
     select
         population,
         noind,
-        conso_gpe1 + conso_gpe3 + conso_gpe4 as cereales_cmpl,
-        conso_gpe5 + conso_gpe2 as cereales_raffinees,
-        conso_gpe7 + conso_gpe8 + conso_gpe9 + conso_gpe44 as produits_laitiers,
-        conso_gpe6 + conso_gpe10 + conso_gpe11,
+        conso_gpe1,
+        conso_gpe2,
+        conso_gpe3,
+        conso_gpe4,
+        conso_gpe5,
+        conso_gpe6,
+        conso_gpe7,
+        conso_gpe8,
+        conso_gpe9,
+        conso_gpe10,
+        conso_gpe11,
         conso_gpe12,
         conso_gpe13,
         conso_gpe14,
@@ -47,7 +54,7 @@ renamed as (
         conso_gpe41,
         conso_gpe42,
         conso_gpe43,
-        
+        conso_gpe44
 
     from source
 
