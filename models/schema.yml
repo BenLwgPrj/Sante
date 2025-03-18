@@ -37,6 +37,13 @@ sources:
         identifier: occasions
         description: ...
 
+      - name: conso-gpe-inca3 
+        identifier: conso-gpe-inca3 
+        description: Conso par individu
+        columns:
+          - name: NOIND
+            description: Numéro individu
+
 #### Example cours
 #      - name: parcel_product 
 #        identifier: raw_cc_parcel_product 
