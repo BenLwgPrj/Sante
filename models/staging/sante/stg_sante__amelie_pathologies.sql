@@ -10,11 +10,21 @@ renamed as (
 
     select
         annee,
-        region,
         patho_niv1,
         patho_niv2,
         patho_niv3,
-        prise_en_charge
+        top,
+        cla_age_5,
+        sexe,
+        region,
+        dept,
+        ntop,
+        npop,
+        prev,
+        `niveau prioritaire`,
+        libelle_classe_age,
+        libelle_sexe,
+        tri
 
     from source
 
