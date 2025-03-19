@@ -4,6 +4,14 @@ sources:
   - name: sante
     schema: SANTE2
     tables:
+      - name: amelie_professionels_sante
+        identifier: amelie_professionels_sante
+        description: Professionnels de santé libéraux - effectif et densité par profession territoire
+
+      - name: amelie_pathologies
+        identifier: amelie_pathologies
+        description: Pathologies - patients pris en charge par pathologie et territoire
+
       - name: indiv-desc
         identifier: description-indiv
         description: Individu table
