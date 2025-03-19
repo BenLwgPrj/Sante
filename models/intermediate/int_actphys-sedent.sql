@@ -1,11 +1,8 @@
 select
         --population,
         noind,
-        transport_personnel,
         transport_ecole,
-        tv_duree,
-        jvideo_duree,
-        ordi_duree,
+        (tv_duree+jvideo_duree+ordi_duree) as temps_ecran,
         jeux_pleinair_nbjours,
         eps_duree,
         club_nbjours,
@@ -16,7 +13,6 @@ select
         emploi_4sem,
         travail_freq_semaine,
         travail_duree,        
-        travail_score,
         --regrouper transport
         COALESCE(transport_voiture_score, 0) + COALESCE(transport_public_score, 0) AS transport_motorise,
         COALESCE(transport_velo_score, 0) + COALESCE(transport_pied_score, 0) AS transport_actif,
