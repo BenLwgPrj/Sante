@@ -1,8 +1,7 @@
 SELECT
     --population,
     noind,
-    ROUND(conso_gpe1 + conso_gpe3 + conso_gpe4,1) as cereales_completes,
-    ROUND(conso_gpe5 + conso_gpe2,1) as cereales_raffinees,
+    ROUND(conso_gpe1 + conso_gpe3 + conso_gpe4 + conso_gpe5 + conso_gpe2,1) as cereales_completes,
     ROUND(conso_gpe7 + conso_gpe8 + conso_gpe9 + conso_gpe44,1) as produits_laitiers,
     ROUND(conso_gpe26,1) as fruits_a_coque,
     ROUND(conso_gpe40 + conso_gpe43,1) as plats_prepares,
