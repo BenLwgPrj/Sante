@@ -42,11 +42,11 @@
 
 {% macro classifify_fumeur (value) %} -- return class_fumeur
     CASE
-        WHEN {{ value }} = 1 THEN 'Fumeur'
-        WHEN {{ value }} = 2 THEN 'Fumeur'
+        WHEN {{ value }} = 1 THEN  1 -- 'Fumeur'
+        WHEN {{ value }} = 2 THEN 1 -- 'Fumeur'
 --        WHEN {{ value }} = 3 THEN 'Non_fumeur'
 --        WHEN {{ value }} = 4 THEN 'Non_fumeur'
-        ELSE 'Non_fumeur'
+        ELSE 0 -- 'Non_fumeur'
     END
 {% endmacro %} 
 

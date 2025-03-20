@@ -63,5 +63,5 @@ from refined_table
 --    patho_niv1 = 'Cancers'
 --    and dept = '01'
 --    and annee= 2015
-group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, libelle_sexe, region
+group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, class_sexe, region
 order by annee

@@ -15,7 +15,7 @@ select
     ruc_4cl,
     situ_alim_statut,
     ia_statut,
---    imc,
+    imc,
     {{ classifify_IMC('imc') }} AS class_IMC,
     statnut,
     CASE 
@@ -25,9 +25,9 @@ select
         OR veget_oeuf IS NOT NULL 
         OR veget_miel IS NOT NULL 
         OR veget_autre_alim IS NOT NULL 
-        THEN '1'
-        ELSE '0'
-    END AS Vegetarien,
+        THEN 1
+        ELSE 0
+    END AS vegetarien,
     poids_modif,
 --    fume,
     {{ classifify_fumeur('fume') }} AS class_fumeur,
