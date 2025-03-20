@@ -16,20 +16,20 @@ with refined_table as (
         --region, -- codification is different from INCA3 [TODO] Must be recoded 
         --dept,
         CASE 
-            WHEN dept IN ('75', '77', '78', '91', '92', '93', '94', '95') THEN '1 Ile-de-France'
-            WHEN dept IN ('14', '27', '50', '61', '76') THEN '2 Normandie'
-            WHEN dept IN ('18', '28', '36', '37', '41', '45') THEN '3 Centre-Val de Loire'
-            WHEN dept IN ('44', '49', '53', '72', '85') THEN '4 Pays de la Loire'
-            WHEN dept IN ('22', '29', '35', '56') THEN '5 Bretagne'
-            WHEN dept IN ('02', '59', '60', '62', '80') THEN '6 Hauts-de-France'
-            WHEN dept IN ('08', '10', '51', '52', '54', '55', '57', '67', '68', '88') THEN '7 Grand Est'
-            WHEN dept IN ('21', '25', '39', '58', '70', '71', '89', '90') THEN '8 Bourgogne-Franche-Comté'
-            WHEN dept IN ('01', '03', '07', '15', '26', '38', '42', '43', '63', '69', '73', '74') THEN '9 Auvergne-Rhône-Alpes'
-            WHEN dept IN ('04', '05', '06', '13', '83', '84') THEN "10 Provence-Alpes-Côte d'Azur"
-            WHEN dept IN ('09', '11', '12', '30', '31', '32', '34', '46', '48', '65', '66', '81', '82') THEN '11 Occitanie-Pyrénées-Méditerranée'
-            WHEN dept IN ('16', '17', '19', '23', '24', '33', '40', '47', '64', '79', '86', '87') THEN '12 Nouvelle-Aquitaine'
-            ELSE 'Other'
-        END AS region,
+            WHEN dept IN ('75', '77', '78', '91', '92', '93', '94', '95') THEN 'Ile-de-France'
+            WHEN dept IN ('14', '27', '50', '61', '76') THEN 'Normandie'
+            WHEN dept IN ('18', '28', '36', '37', '41', '45') THEN 'Centre-Val de Loire'
+            WHEN dept IN ('44', '49', '53', '72', '85') THEN 'Pays de la Loire'
+            WHEN dept IN ('22', '29', '35', '56') THEN 'Bretagne'
+            WHEN dept IN ('02', '59', '60', '62', '80') THEN 'Hauts-de-France'
+            WHEN dept IN ('08', '10', '51', '52', '54', '55', '57', '67', '68', '88') THEN 'Grand Est'
+            WHEN dept IN ('21', '25', '39', '58', '70', '71', '89', '90') THEN 'Bourgogne-Franche-Comté'
+            WHEN dept IN ('01', '03', '07', '15', '26', '38', '42', '43', '63', '69', '73', '74') THEN 'Auvergne-Rhône-Alpes'
+            WHEN dept IN ('04', '05', '06', '13', '83', '84') THEN "Provence-Alpes-Côte d'Azur"
+            WHEN dept IN ('09', '11', '12', '30', '31', '32', '34', '46', '48', '65', '66', '81', '82') THEN 'Occitanie-Pyrénées-Méditerranée'
+            WHEN dept IN ('16', '17', '19', '23', '24', '33', '40', '47', '64', '79', '86', '87') THEN 'Nouvelle-Aquitaine'
+            ELSE '0-Valeur inconnue'
+        END AS region_text,
         ntop,
         npop,
         prev,
@@ -54,7 +54,7 @@ select
         WHEN libelle_sexe = 'hommes' THEN 'Homme'
         WHEN libelle_sexe = 'femmes' THEN 'Femme'
       END as class_sexe,
-    region,
+    region_text,
     sum(ntop) as nb_prise_en_charge,
     avg(prev) as avg_prevalence,
     sum(npop) as nb_individu_class
@@ -63,5 +63,5 @@ from refined_table
 --    patho_niv1 = 'Cancers'
 --    and dept = '01'
 --    and annee= 2015
-group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, class_sexe, region
+group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, class_sexe, region_text
 order by annee
