@@ -39,7 +39,8 @@ SELECT
     CASE 
         WHEN sex_ps=1 THEN 'Homme'
         ELSE 'Femme'
-    END AS class_sexe
+    END AS class_sexe,
+
 FROM {{ ref('int_indiv-descrip') }} AS indiv
 INNER JOIN {{ ref('int_actphys-sedent') }} AS actphys
   USING (NOIND)
