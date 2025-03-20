@@ -20,7 +20,7 @@ with conso_gpe_grouped as (
 select 
     *,
     ---------------------    
-    -- Recomendations
+    -- Add Recomendations flag
     ---------------------
         CASE  
             WHEN conso_fruits_legumes > 500 THEN 1  

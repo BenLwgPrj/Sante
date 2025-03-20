@@ -1,11 +1,5 @@
 SELECT  
-    *,
-    {{ classifify_tage_ps('tage_ps') }} AS class_age,
-    {{ classifify_fumeur('fume') }} AS class_fumeur,
-    {{ classifify_IMC('IMC') }} AS class_IMC,
-    {{ classifify_revenu('revenu') }} AS class_revenue,
-    {{ classifify_sex_ps('sex_ps') }} AS class_sexe,
-
+    *
 FROM {{ ref('int_indiv-descrip') }} 
 INNER JOIN {{ ref('int_actphys-sedent') }} 
   USING (NOIND)

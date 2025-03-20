@@ -21,8 +21,8 @@
         WHEN {{ value }} = 7 THEN '3-Adulte'
         WHEN {{ value }} = 8 THEN '3-Adulte'
         WHEN {{ value }} = 9 THEN '3-Adulte'
-        ELSE 
-    END '0-Valeur inconnue'
+        ELSE '0-Valeur inconnue'
+    END 
 {% endmacro %} 
 
 {% macro classifify_IMC (value) %} -- return class_IMC
