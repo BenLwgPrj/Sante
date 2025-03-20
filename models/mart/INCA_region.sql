@@ -3,7 +3,7 @@ select
     class_sexe,
     class_age,
     class_revenue,
-    avg(tps_travail_interv) as avg_tps_travail_interv,
+--    tps_travail_interv,
 --    situ_alim_statut, --
 --    ia_statut, --
 --    class_IMC, -- potentiel groupement en COUNTIF
@@ -76,6 +76,11 @@ select
 
 from {{ ref('INCA_indiv_join') }}
 group by 
+    Region,
+    class_sexe,
+    class_age,
+    class_revenue
+order by 
     Region,
     class_sexe,
     class_age,
