@@ -1,8 +1,9 @@
 select 
     Region,
+    region_text,
     class_sexe,
     class_age,
-    class_revenue,
+--    class_revenue,
 --    tps_travail_interv,
 --    situ_alim_statut, --
 --    ia_statut, --
@@ -77,11 +78,11 @@ select
 from {{ ref('INCA_indiv_join') }}
 group by 
     Region,
+    region_text,
     class_sexe,
-    class_age,
-    class_revenue
+    class_age
 order by 
     Region,
+    region_text,
     class_sexe,
-    class_age,
-    class_revenue
+    class_age

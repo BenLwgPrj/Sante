@@ -65,3 +65,22 @@
         ELSE 'Femme'
     END
 {% endmacro %} 
+
+
+{% macro classifify_format_region_adm12cl  (value) %} 
+    CASE 
+        WHEN {{ value }} = 1 THEN "Ile-de-France"
+        WHEN {{ value }} = 2 THEN "Normandie" 
+        WHEN {{ value }} = 3 THEN "Centre-Val de Loire" 
+        WHEN {{ value }} = 4 THEN "Pays de la Loire" 
+        WHEN {{ value }} = 5 THEN "Bretagne" 
+        WHEN {{ value }} = 6 THEN "Hauts-de-France" 
+        WHEN {{ value }} = 7 THEN "Grand Est" 
+        WHEN {{ value }} = 8 THEN "Bourgogne-Franche-Comté" 
+        WHEN {{ value }} = 9 THEN "Auvergne-Rhône-Alpes" 
+        WHEN {{ value }} = 10 THEN "Provence-Alpes-Côte d'Azur" 
+        WHEN {{ value }} = 11 THEN "Occitanie-Pyrénées-Méditerranée" 
+        WHEN {{ value }} = 12 THEN "Nouvelle-Aquitaine"
+        ELSE '0-Valeur inconnue'
+    END
+{% endmacro %} 

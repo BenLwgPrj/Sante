@@ -3,6 +3,7 @@ select
     noind,
     ech,
     region_adm_12cl AS Region,
+    {{ classifify_format_region_adm12cl ('region_adm_12cl') }} AS region_text,
 --    sex_ps,
     {{ classifify_sex_ps('sex_ps') }} AS class_sexe,
 --    tage_ps,
