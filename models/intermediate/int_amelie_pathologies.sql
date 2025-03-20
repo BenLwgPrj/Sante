@@ -29,7 +29,7 @@ with refined_table as (
             WHEN dept IN ('09', '11', '12', '30', '31', '32', '34', '46', '48', '65', '66', '81', '82') THEN '11 Occitanie-Pyrénées-Méditerranée'
             WHEN dept IN ('16', '17', '19', '23', '24', '33', '40', '47', '64', '79', '86', '87') THEN '12 Nouvelle-Aquitaine'
             ELSE 'Other'
-        END AS region_name,
+        END AS region,
         ntop,
         npop,
         prev,
@@ -50,8 +50,11 @@ select
     patho_niv2,
     patho_niv3,
     class_age,
-    libelle_sexe,
-    region_name,
+    CASE 
+        WHEN libelle_sexe = 'hommes' THEN 'Homme'
+        WHEN libelle_sexe = 'femmes' THEN 'Femme'
+      END as class_sexe,
+    region,
     sum(ntop) as nb_prise_en_charge,
     avg(prev) as avg_prevalence,
     sum(npop) as nb_individu_class
@@ -60,5 +63,5 @@ from refined_table
 --    patho_niv1 = 'Cancers'
 --    and dept = '01'
 --    and annee= 2015
-group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, libelle_sexe, region_name
+group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, libelle_sexe, region
 order by annee
