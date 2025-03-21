@@ -10,7 +10,7 @@ with refined_table as (
             when cla_age_5 in ('00-04', '05-09') then '1-Enfant'
             when cla_age_5 in ('10-14', '15-19') then '2-Ado'
             when cla_age_5 in ('75-79', '80-84','90-94','95et+') then '4-Senior'
-            else '3-Adult'
+            else '3-Adulte'
         end as class_age,
         --sexe,
         --region, -- codification is different from INCA3 [TODO] Must be recoded 
