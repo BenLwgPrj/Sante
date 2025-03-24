@@ -20,12 +20,12 @@ select
     {{ classify_IMC('imc') }} AS class_IMC,
     statnut,
     CASE 
-        WHEN (veget_viande=1
-        OR veget_prodmer=1
-        OR veget_prodlait=1
-        OR veget_oeuf=1
-        OR veget_miel=1
-        OR veget_autre_alim=1)
+        WHEN (veget_viande = 1
+        OR veget_prodmer = 1
+        OR veget_prodlait = 1
+        OR veget_oeuf = 1
+        OR veget_miel = 1
+        OR veget_autre_alim = 1)
         THEN 1
         ELSE 0
     END AS vegetarien,
