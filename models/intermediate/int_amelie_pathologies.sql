@@ -1,67 +1,92 @@
-with refined_table as (
+-- Remove lines that gather sub-totals and generate redundancy counts 
+-- excludes tous-sexes, tous_ages and sub-total on patho_niv1&2
+with class_age_table as (
     select 
         annee,
         patho_niv1,
         patho_niv2,
         patho_niv3,
-        --top, -- not interesting
-        --cla_age_5,
         case 
             when cla_age_5 in ('00-04', '05-09') then '1-Enfant'
             when cla_age_5 in ('10-14', '15-19') then '2-Ado'
             when cla_age_5 in ('75-79', '80-84','90-94','95et+') then '4-Senior'
             else '3-Adulte'
         end as class_age,
-        --sexe,
-        --region, -- codification is different from INCA3 [TODO] Must be recoded 
-        --dept,
         CASE 
-            WHEN dept IN ('75', '77', '78', '91', '92', '93', '94', '95') THEN 'Ile-de-France'
-            WHEN dept IN ('14', '27', '50', '61', '76') THEN 'Normandie'
-            WHEN dept IN ('18', '28', '36', '37', '41', '45') THEN 'Centre-Val de Loire'
-            WHEN dept IN ('44', '49', '53', '72', '85') THEN 'Pays de la Loire'
-            WHEN dept IN ('22', '29', '35', '56') THEN 'Bretagne'
-            WHEN dept IN ('02', '59', '60', '62', '80') THEN 'Hauts-de-France'
-            WHEN dept IN ('08', '10', '51', '52', '54', '55', '57', '67', '68', '88') THEN 'Grand Est'
-            WHEN dept IN ('21', '25', '39', '58', '70', '71', '89', '90') THEN 'Bourgogne-Franche-Comté'
-            WHEN dept IN ('01', '03', '07', '15', '26', '38', '42', '43', '63', '69', '73', '74') THEN 'Auvergne-Rhône-Alpes'
-            WHEN dept IN ('04', '05', '06', '13', '83', '84') THEN "Provence-Alpes-Côte d'Azur"
-            WHEN dept IN ('09', '11', '12', '30', '31', '32', '34', '46', '48', '65', '66', '81', '82') THEN 'Occitanie-Pyrénées-Méditerranée'
-            WHEN dept IN ('16', '17', '19', '23', '24', '33', '40', '47', '64', '79', '86', '87') THEN 'Nouvelle-Aquitaine'
-            ELSE '0-Valeur inconnue'
-        END AS region_text,
+            WHEN libelle_sexe = 'hommes' THEN 'Homme'
+            WHEN libelle_sexe = 'femmes' THEN 'Femme'
+            ELSE 'NON-DEFINI'
+        END as class_sexe,
+        {{ classifify_region('dept') }} as region_text,
+        dept,
         ntop,
-        npop,
-        prev,
-        --`niveau prioritaire`,
-        --libelle_classe_age, --redudant with `cla_age_5`
-        libelle_sexe,
-        --tri
+        npop
 
     from {{ ref('stg_sante__amelie_pathologies') }}
-    where  -- Remove lines that gather sub-totals and generate redundancy counts                                   
+    where
         libelle_sexe != 'tous sexes' 
         and libelle_classe_age != 'tous âges'
         and patho_niv3 is not null
+),
+-- !!! npop gives pop values for a concerned class. 
+-- calculate nb_individu_class in a class for each segment
+nb_indiv_windows as (
+    select
+        *,
+        sum(npop) OVER (
+            PARTITION BY annee, 
+                region_text,
+                class_sexe,
+                class_age,
+                patho_niv1,
+                patho_niv2,
+                patho_niv3
+        ) as nb_individu_class
+    from class_age_table
+),
+-- regroup data by class_age and region 
+agg_age_region_table as (
+    select
+        annee,
+        region_text,
+        class_sexe,
+        class_age,
+        --npop,
+        max(nb_individu_class) as nb_individu_class, -- takes the max npop of concerned individu in class
+        patho_niv1,
+        patho_niv2,
+        patho_niv3,
+        sum(ntop) as nb_prise_en_charge
+    from nb_indiv_windows
+    group by
+        annee,
+        region_text,
+        class_sexe,
+        class_age,
+        patho_niv1,
+        patho_niv2,
+        patho_niv3
 )
-select 
-    annee,
-    patho_niv1,
-    patho_niv2,
-    patho_niv3,
-    class_age,
-    CASE 
-        WHEN libelle_sexe = 'hommes' THEN 'Homme'
-        WHEN libelle_sexe = 'femmes' THEN 'Femme'
-      END as class_sexe,
-    region_text,
-    sum(ntop) as nb_prise_en_charge,
-    avg(prev) as avg_prevalence,
-    sum(npop) as nb_individu_class
-from refined_table
---where -- pour tester une class d'echantillon
---    patho_niv1 = 'Cancers'
---    and dept = '01'
---    and annee= 2015
-group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, class_sexe, region_text
-order by annee
+select *
+from agg_age_region_table
+WHERE  region_text != '0-Corse et DOM-TOM'  --excluded in INCA study
+-- pour tester une class d'echantillon
+--    and patho_niv3 = 'Accident vasculaire cérébral aigu'
+order by annee, region_text, class_sexe, class_age
+-- select 
+--     annee,
+--     patho_niv1,
+--     patho_niv2,
+--     patho_niv3,
+--     class_age,
+--     class_sexe,
+--     region_text,
+--     sum(nb_prise_en_charge) as nb_prise_en_charge,
+--     sum(nb_individu_class) as nb_individu_class
+-- from agg_age_table
+-- pour tester une class d'echantillon
+--     patho_niv3 = 'Accident vasculaire cérébral aigu'
+--     and region_text = 'Auvergne-Rhône-Alpes'
+--     and annee= 2015
+-- group by annee, patho_niv1, patho_niv2, patho_niv3, class_age, class_sexe , region_text
+
