@@ -1,4 +1,29 @@
-{% macro classifify_region (value) %}
+{% macro classify_libelle_sexe (value) %}
+    CASE 
+        WHEN {{ value }}  = 'hommes' THEN 'Homme'
+        WHEN {{ value }}  = 'femmes' THEN 'Femme'
+        ELSE 'NON-DEFINI'
+    END
+{% endmacro %} 
+
+{% macro classify_cla_age_5 (value) %}
+    case 
+        when {{ value }}  in ('00-04', '05-09') then '1-Enfant'
+        when {{ value }}  in ('10-14', '15-19') then '2-Ado'
+        when {{ value }}  in ('80-84','90-94','95et+') then '4-Senior'
+        else '3-Adulte'
+    end 
+{% endmacro %} 
+
+{% macro classify_cla_age_5_wo_senior (value) %}
+    case 
+        when {{ value }}  in ('00-04', '05-09') then '1-Enfant'
+        when {{ value }}  in ('10-14', '15-19') then '2-Ado'
+        else '3-Adulte'
+    end 
+{% endmacro %} 
+
+{% macro classify_region (value) %}
     CASE 
         WHEN {{ value }} IN ('75', '77', '78', '91', '92', '93', '94', '95') THEN 'Ile-de-France'
         WHEN {{ value }} IN ('14', '27', '50', '61', '76') THEN 'Normandie'

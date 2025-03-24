@@ -8,7 +8,7 @@ with conso_gpe_grouped as (
         ROUND(conso_gpe40 + conso_gpe43,1) as conso_plats_prepares,
         ROUND(conso_gpe12 + conso_gpe13,1) as conso_matieres_grasses_ajoutees,
         ROUND(conso_gpe15+conso_gpe20+conso_gpe36+conso_gpe14+conso_gpe16,1) as conso_viandes_et_oeufs,
-        ROUND(conso_gpe15+conso_gpe20+conso_gpe36,1) as conso__viandes_rouges,
+        ROUND(conso_gpe15+conso_gpe20+conso_gpe36,1) as conso__viandes_rouges, -- add viande rouge solo for correlation with decease
         ROUND(conso_gpe17,1) as conso_charcuterie,
         ROUND(conso_gpe18 + conso_gpe19 + conso_gpe37,1) as conso_poissons_fruits_mer,
         ROUND(conso_gpe21 + conso_gpe38 + conso_gpe35 + conso_gpe41 + conso_gpe24 + conso_gpe25,1) as conso_fruits_legumes,

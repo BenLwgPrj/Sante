@@ -1,4 +1,4 @@
-{% macro classifify_format_statnut (value) %} -- return class_IMC
+{% macro classify_format_statnut (value) %} -- return class_IMC
      CASE  
         WHEN  {{ value }} = 0 THEN '1-Maigreur'
         WHEN  {{ value }} = 1 THEN '2-Normal'
@@ -10,7 +10,7 @@
     END 
 {% endmacro %} 
 
-{% macro classifify_tage_ps (value) %} -- return class_age
+{% macro classify_tage_ps (value) %} -- return class_age
     CASE
         WHEN {{ value }} = 1 THEN '1-Enfant'
         WHEN {{ value }} = 2 THEN '1-Enfant'
@@ -25,7 +25,7 @@
     END 
 {% endmacro %} 
 
-{% macro classifify_IMC (value) %} -- return class_IMC
+{% macro classify_IMC (value) %} -- return class_IMC
     CASE  
 --        WHEN {{ value }}  < 16 THEN '1-anorexie ou dénutrition'
 --        WHEN {{ value }} >= 16.5 AND {{ value }} < 18.5 THEN '2-état de maigreur'
@@ -40,7 +40,7 @@
     END 
 {% endmacro %} 
 
-{% macro classifify_fumeur (value) %} -- return class_fumeur
+{% macro classify_fumeur (value) %} -- return class_fumeur
     CASE
         WHEN {{ value }} = 1 THEN  1 -- 'Fumeur'
         WHEN {{ value }} = 2 THEN 1 -- 'Fumeur'
@@ -50,7 +50,7 @@
     END
 {% endmacro %} 
 
-{% macro classifify_revenu (value) %} -- return class_revenue
+{% macro classify_revenu (value) %} -- return class_revenue
     CASE
         WHEN {{ value }} >= 1 AND {{ value }} <= 7 THEN '1-Revenus_bas'
         WHEN {{ value }} > 7 AND {{ value }}  <= 11 THEN '2-Revenus_moyens'
@@ -59,7 +59,7 @@
     END 
 {% endmacro %} 
 
-{% macro classifify_sex_ps (value) %} -- return class_sexe
+{% macro classify_sex_ps (value) %} -- return class_sexe
     CASE 
         WHEN {{ value }} = 1 THEN 'Homme'
         ELSE 'Femme'
@@ -67,7 +67,7 @@
 {% endmacro %} 
 
 
-{% macro classifify_format_region_adm12cl  (value) %} 
+{% macro classify_format_region_adm12cl  (value) %} 
     CASE 
         WHEN {{ value }} = 1 THEN "Ile-de-France"
         WHEN {{ value }} = 2 THEN "Normandie" 
