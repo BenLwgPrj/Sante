@@ -41,6 +41,7 @@ agg_age_region_table as (
         region_text,
         class_sexe,
         class_age,
+        class_age_wo_senior,
         --npop,
         max(nb_individu_class) as nb_individu_class, -- takes the max npop of concerned individu in class
         patho_niv1,
@@ -53,6 +54,7 @@ agg_age_region_table as (
         region_text,
         class_sexe,
         class_age,
+        class_age_wo_senior,
         patho_niv1,
         patho_niv2,
         patho_niv3

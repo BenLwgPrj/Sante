@@ -3,6 +3,7 @@ SELECT
     patho_niv2,
     patho_niv3,
     class_age,
+    class_age_wo_senior,
     class_sexe,
     region_text,
     AVG(nb_prise_en_charge) AS avg_prise_en_charge,
@@ -14,4 +15,5 @@ GROUP BY
     patho_niv3,
     region_text,
     class_age,
+    class_age_wo_senior,
     class_sexe
