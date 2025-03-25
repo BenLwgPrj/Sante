@@ -1,4 +1,5 @@
 SELECT
+    {{ classify_patho_type('patho_niv3') }} as patho_type,
     patho_niv1,
     patho_niv2,
     patho_niv3,

@@ -40,3 +40,56 @@
         ELSE '0-Corse et DOM-TOM'
     END 
 {% endmacro %} 
+
+{% macro classify_patho_type (value) %}
+    CASE
+        -- Pathologies liées à l'alcool
+        WHEN {{ value }} IN ('Maladies du foie ou du pancréas (hors mucoviscidose)',
+                            'Troubles addictifs',
+                            "Démences (dont maladie d'Alzheimer)",
+                            'Troubles psychotiques',
+                            "Troubles névrotiques et de l'humeur",
+                            'Accident vasculaire cérébral aigu',
+                            "Séquelle d'accident vasculaire cérébral",
+                            'Autres affections cardiovasculaires')
+            THEN "liées à l'alcool"
+
+        -- Pathologies liées au sucre
+        WHEN {{ value }} IN ('Diabète',
+                            'Troubles du rythme ou de la conduction cardiaque',
+                            'Autres affections cardiovasculaires',
+                            'Artériopathie périphérique')
+            THEN 'liées au sucre'
+
+        -- Pathologies liées aux matières grasses
+        WHEN {{ value }} IN ('Traitements hypolipémiants (hors pathologies)',
+                            'Autres affections cardiovasculaires',
+                            'Syndrome coronaire aigu',
+                            'Maladie coronaire chronique',
+                            'Insuffisance cardiaque chronique',
+                            'Insuffisance cardiaque aiguë',
+                            'Artériopathie périphérique',
+                            'Cancer colorectal actif',
+                            'Cancer colorectal sous surveillance')
+            THEN 'liées aux matières grasses'
+
+        -- Pathologies liées aux carences
+        WHEN {{ value }} IN ("Hémophilie ou troubles de l'hémostase graves",
+                            'Déficience mentale',
+                            'Myopathie ou myasthénie',
+                            'Sclérose en plaques',
+                            'Lésion médullaire',
+                            'Autres maladies inflammatoires chroniques')
+            THEN 'liées aux carences'
+
+        ELSE 'autre'
+                -- 'Autres troubles psychiatriques',
+                -- 'Embolie pulmonaire',
+                -- 'Insuffisance cardiaque chronique',
+                -- 'Insuffisance cardiaque aiguë',
+                -- 'Cancer colorectal actif',
+                -- 'Cancer colorectal sous surveillance',
+                -- 'Cancer du sein de la femme actif',
+                -- 'Cancer du sein de la femme sous surveillance'
+    END
+{% endmacro %} 
