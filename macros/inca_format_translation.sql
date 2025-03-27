@@ -52,9 +52,9 @@
 
 {% macro classify_revenu (value) %} -- return class_revenue
     CASE
-        WHEN {{ value }} >= 1 AND {{ value }} <= 7 THEN '1-Revenus_bas'
-        WHEN {{ value }} > 7 AND {{ value }}  <= 11 THEN '2-Revenus_moyens'
-        WHEN {{ value }} > 11 THEN '3-Revenus_eleves'
+        WHEN {{ value }} >= 1 AND {{ value }} <= 7 THEN '1- Bas'
+        WHEN {{ value }} > 7 AND {{ value }}  <= 11 THEN '2- Moyens'
+        WHEN {{ value }} > 11 THEN '3- Eleves'
         ELSE '0-Valeur inconnue'
     END 
 {% endmacro %} 

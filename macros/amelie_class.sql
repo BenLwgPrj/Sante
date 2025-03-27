@@ -1,4 +1,4 @@
-{% macro classify_libelle_sexe (value) %}
+4{% macro classify_libelle_sexe (value) %}
     CASE 
         WHEN {{ value }}  = 'hommes' THEN 'Homme'
         WHEN {{ value }}  = 'femmes' THEN 'Femme'
@@ -47,7 +47,6 @@
         WHEN {{ value }} IN ('Maladies du foie ou du pancréas (hors mucoviscidose)',
                             'Troubles addictifs',
                             "Démences (dont maladie d'Alzheimer)",
-                            'Troubles psychotiques',
                             "Troubles névrotiques et de l'humeur",
                             'Accident vasculaire cérébral aigu',
                             "Séquelle d'accident vasculaire cérébral",
@@ -91,5 +90,6 @@
                 -- 'Cancer colorectal sous surveillance',
                 -- 'Cancer du sein de la femme actif',
                 -- 'Cancer du sein de la femme sous surveillance'
+                -- 'Troubles psychotiques',
     END
 {% endmacro %} 
