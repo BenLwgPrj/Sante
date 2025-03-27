@@ -13,18 +13,18 @@ renamed as (
         patho_niv1,
         patho_niv2,
         patho_niv3,
-        top,
+        --top, -- not interesting
         cla_age_5,
         sexe,
-        region,
+        libelle_sexe,
+        -- region,  -- codification is different from INCA3 [] Must be recoded 
         dept,
         ntop,
-        npop,
-        prev,
-        `niveau prioritaire`,
-        libelle_classe_age,
-        libelle_sexe,
-        tri
+        npop,        
+        --prev,  --dropped to be recalculated in VIZ
+        --`niveau prioritaire`,
+        libelle_classe_age, 
+        --tri
 
     from source
 

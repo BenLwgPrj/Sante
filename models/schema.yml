@@ -37,13 +37,13 @@ sources:
 #          - unique
 #          - not_null
         
-      - name: fpq
-        identifier: fpq
-        description: ...
+      # - name: fpq
+      #   identifier: fpq
+      #   description: ...
         
-      - name: occasions
-        identifier: occasions
-        description: ...
+      # - name: occasions
+      #   identifier: occasions
+      #   description: ...
 
       - name: conso-gpe-inca3 
         identifier: conso-gpe-inca3 
